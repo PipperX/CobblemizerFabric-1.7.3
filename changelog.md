@@ -47,3 +47,8 @@ Tier/Rarity items, with values changeable in the config (cobblemizer/cobblemizer
 - Use `pokemon.getDisplayName()` for player-facing messages so nicknames and formatting are preserved.
 - Various message and encoding fixes; cleared evolution proxy after level changes to avoid serialization issues.
 
+## [1.7.3-1.21.1 (February 28th, 2026)](#1-6-1-1-21-1)
+### Release:
+- Built and remapped artifact `CobblemizerFabric-1.7.3-1.21.1.jar` for Fabric/Minecraft 1.21.1.
+### Fixes & Improvements:
+- Updated to be compatible with Cobblemon 1.7.3
