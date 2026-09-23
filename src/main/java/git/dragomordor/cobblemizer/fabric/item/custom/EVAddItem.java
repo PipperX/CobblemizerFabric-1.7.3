@@ -1,9 +1,11 @@
 package git.dragomordor.cobblemizer.fabric.item.custom;
 
+import com.cobblemon.mod.common.api.pokemon.stats.SidemodEvSource;
 import com.cobblemon.mod.common.api.pokemon.stats.Stat;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.EVs;
 import com.cobblemon.mod.common.pokemon.Pokemon;
+import git.dragomordor.cobblemizer.fabric.CobblemizerMod;
 import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
 import git.dragomordor.cobblemizer.fabric.misc.TierRarityClass;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +32,7 @@ public class EVAddItem extends PokemonUseItem {
         // Get the increaseAmount from the config based on the provided tier
         int increaseAmount = getIncreaseAmountForTier(config, tier);
         int EVcurrentAmount = evs.get(this.statToBoost);
-        // Modify the PokÃƒÆ’Ã‚Â©mon's EV by the obtained increaseAmount
+        // Modify the Pok\u00e9mon's EV by the obtained increaseAmount
         int newEVAmount = Math.min(EVcurrentAmount + increaseAmount, maxEV);
         int actualIncrease = newEVAmount - EVcurrentAmount;
 
@@ -40,10 +42,10 @@ public class EVAddItem extends PokemonUseItem {
         }
 
         // if EV not max, increase by tier amount
-        evs.add(statToBoost, actualIncrease);
-        player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s " + statToBoost.getDisplayName().getString() + " EV by " + actualIncrease));
+        evs.add(statToBoost, actualIncrease, new SidemodEvSource(CobblemizerMod.MODID, pokemon));
+        player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s " + statToBoost.getDisplayName().getString() + " EV by " + actualIncrease));
         if (newEVAmount == maxEV) { // if new EV amount is maxed, indicate to player
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s " + statToBoost.getDisplayName().getString() + " EV is now at maximum"));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s " + statToBoost.getDisplayName().getString() + " EV is now at maximum"));
         }
         itemStack.decrement(1); // remove item after use
         return ActionResult.SUCCESS;
@@ -58,4 +60,3 @@ public class EVAddItem extends PokemonUseItem {
         return 0; // Default value if tierName not found in config
     }
 }
-

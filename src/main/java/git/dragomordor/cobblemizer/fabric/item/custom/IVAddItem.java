@@ -30,7 +30,7 @@ public class IVAddItem extends PokemonUseItem {
         // Get the increaseAmount from the config based on the provided tier
         int increaseAmount = getIncreaseAmountForTier(config, tier);
         int IVcurrentAmount = IVs.get(this.statToBoost);
-        // Modify the PokÃƒÆ’Ã‚Â©mon's IV by the obtained increaseAmount
+        // Modify the Pok\u00e9mon's IV by the obtained increaseAmount
         int newIVAmount = Math.min(IVcurrentAmount + increaseAmount, maxIV);
         int actualIncrease = newIVAmount - IVcurrentAmount;
 
@@ -41,9 +41,9 @@ public class IVAddItem extends PokemonUseItem {
 
         // if IV not max, increase by tier amount
         IVs.set(statToBoost, IVcurrentAmount+actualIncrease);
-        player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s " + statToBoost.getDisplayName().getString() + " IV by " + actualIncrease));
+        player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s " + statToBoost.getDisplayName().getString() + " IV by " + actualIncrease));
         if (newIVAmount == maxIV) { // if new IV amount is maxed, indicate to player
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s " + statToBoost.getDisplayName().getString() + " IV is now at maximum"));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s " + statToBoost.getDisplayName().getString() + " IV is now at maximum"));
         }
         itemStack.decrement(1); // remove item after use
         return ActionResult.SUCCESS;
@@ -58,4 +58,3 @@ public class IVAddItem extends PokemonUseItem {
         return 0; // Default value if tierName not found in config
     }
 }
-

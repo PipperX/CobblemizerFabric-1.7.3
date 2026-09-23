@@ -1,5 +1,6 @@
 package git.dragomordor.cobblemizer.fabric.item.custom;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
@@ -22,7 +23,7 @@ public class LVLAddItem extends PokemonUseItem{
     @Override
     public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
         CobblemizerConfig config = CobblemizerConfig.Builder.load();
-        int maxLevel = 100; // Maximum level
+        int maxLevel = Cobblemon.config.getMaxPokemonLevel();
         int currentLevel = pokemon.getLevel(); // Current level
         // Get the increaseAmount from the config based on the provided tier
         int increaseAmount = getIncreaseAmountForTier(config, tier);
@@ -45,9 +46,9 @@ public class LVLAddItem extends PokemonUseItem{
             // continue even if clearing fails
         }
 
-        player.sendMessage(Text.literal("Increased ").append(pokemon.getDisplayName()).append(Text.literal("'s Level by " + actualIncrease)));
+        player.sendMessage(Text.literal("Increased ").append(pokemon.getDisplayName(false)).append(Text.literal("'s Level by " + actualIncrease)));
         if (newLevel == maxLevel) { // if new Level amount is maxed, indicate to player
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append(" is now at maximum level"));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append(" is now at maximum level"));
         }
         itemStack.decrement(1); // remove item after use
         return ActionResult.SUCCESS;
@@ -55,7 +56,7 @@ public class LVLAddItem extends PokemonUseItem{
 
     // Method to get the increaseAmount from the config based on the provided tier
     private int getIncreaseAmountForTier(CobblemizerConfig config, String tierName) {
-        for (TierRarityClass tier : config.friendshipTiers) {
+        for (TierRarityClass tier : config.LVLTiers) {
             if (tier.name.equalsIgnoreCase(tierName)) {
                 return tier.increaseAmount;
             }
@@ -63,4 +64,3 @@ public class LVLAddItem extends PokemonUseItem{
         return 0; // Default value if tierName not found in config
     }
 }
-

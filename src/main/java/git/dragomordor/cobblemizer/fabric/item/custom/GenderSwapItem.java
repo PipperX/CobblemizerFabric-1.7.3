@@ -18,7 +18,7 @@ public class GenderSwapItem extends PokemonUseItem {
         Gender gender = pokemon.getGender();
         // if gender is genderless, it cannot swap
         if (gender == Gender.GENDERLESS) {
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s gender cannot be changed (gender unknown)"));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s gender cannot be changed (gender unknown)"));
             return ActionResult.FAIL;
         }
 
@@ -30,17 +30,16 @@ public class GenderSwapItem extends PokemonUseItem {
             pokemon.setGender(newGender);
             String genderName = newGender.name().toLowerCase(); // Get the lowercase gender name
             String formattedGender = Character.toUpperCase(genderName.charAt(0)) + genderName.substring(1); // Convert to title case
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s gender has been changed to "+formattedGender));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s gender has been changed to "+formattedGender));
         } else if (gender == Gender.FEMALE) {
             Gender newGender = Gender.MALE;
             pokemon.setGender(newGender);
             String genderName = newGender.name().toLowerCase(); // Get the lowercase gender name
             String formattedGender = Character.toUpperCase(genderName.charAt(0)) + genderName.substring(1); // Convert to title case
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s gender has been changed to "+formattedGender));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s gender has been changed to "+formattedGender));
         }
 
         itemStack.decrement(1); // remove item after use
         return ActionResult.SUCCESS;
     }
 }
-

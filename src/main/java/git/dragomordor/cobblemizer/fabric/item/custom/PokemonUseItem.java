@@ -24,9 +24,9 @@ public abstract class PokemonUseItem extends Item {
             return ActionResult.PASS;
         }
 
-        //checks whether target is PokÃƒÆ’Ã‚Â©mon
+        //checks whether target is Pok\u00e9mon
         if (!(target instanceof PokemonEntity pokemonEntity)) {
-            player.sendMessage(Text.of("Not a PokÃƒÆ’Ã‚Â©mon"));
+            player.sendMessage(Text.of("Not a Pok\u00e9mon"));
             return ActionResult.FAIL;
         }
 
@@ -34,7 +34,7 @@ public abstract class PokemonUseItem extends Item {
         Pokemon pokemon = pokemonEntity.getPokemon();
         StoreCoordinates<?> storeCoordinates = pokemon.getStoreCoordinates().get();
 
-        // determines PokÃƒÆ’Ã‚Â©mon ownership
+        // determines Pok\u00e9mon ownership
         Ownership ownership;
         if (storeCoordinates == null) {
             ownership = Ownership.WILD;
@@ -44,9 +44,9 @@ public abstract class PokemonUseItem extends Item {
             ownership = Ownership.OWNED_ANOTHER;
         }
 
-        // when you are not PokÃƒÆ’Ã‚Â©mon's owner, give error
+        // when you are not Pok\u00e9mon's owner, give error
         if (ownership != Ownership.OWNER) {
-            player.sendMessage(Text.of("Not your PokÃƒÆ’Ã‚Â©mon"));
+            player.sendMessage(Text.of("Not your Pok\u00e9mon"));
             return ActionResult.FAIL;
         }
 

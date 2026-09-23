@@ -20,7 +20,7 @@ public class IVRandomItem extends PokemonUseItem {
 
     @Override
     public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-        IVs ivs = pokemon.getIvs(); // Access the IVs of the PokÃƒÆ’Ã‚Â©mon
+        IVs ivs = pokemon.getIvs(); // Access the IVs of the Pokemon
         Random random = new Random(); // random number generator
 
         // randomizes the six permanent IV stats only
@@ -33,8 +33,8 @@ public class IVRandomItem extends PokemonUseItem {
                 Stats.SPEED
         };
         for (Stat stat : stats) {
-            int randomValue = random.nextInt(IVs.MAX_VALUE + 1); // Generate a random value between 0 and MAX_STAT_VALUE (inclusive)
-            ivs.set(stat, randomValue); // Set each IV stat to the generated random value
+            int randomValue = random.nextInt(IVs.MAX_VALUE + 1); // random value between 0 and MAX_VALUE (inclusive)
+            ivs.set(stat, randomValue);
         }
 
         itemStack.decrement(1); // remove item after use
@@ -42,4 +42,3 @@ public class IVRandomItem extends PokemonUseItem {
         return ActionResult.SUCCESS;
     }
 }
-

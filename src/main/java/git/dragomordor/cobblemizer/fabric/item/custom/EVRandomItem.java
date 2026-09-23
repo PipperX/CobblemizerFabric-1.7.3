@@ -24,7 +24,7 @@ public class EVRandomItem extends PokemonUseItem {
 
     @Override
     public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-        EVs evs = pokemon.getEvs(); // Access the EVs of the PokÃƒÆ’Ã‚Â©mon
+        EVs evs = pokemon.getEvs(); // Access the EVs of the Pok\u00e9mon
         Random random = new Random(); // random number generator
 
         // Randomize the six permanent EV stats only
@@ -46,4 +46,3 @@ public class EVRandomItem extends PokemonUseItem {
         return ActionResult.SUCCESS;
     }
 }
-

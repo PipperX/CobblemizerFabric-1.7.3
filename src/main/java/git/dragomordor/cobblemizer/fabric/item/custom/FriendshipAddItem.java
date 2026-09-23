@@ -1,5 +1,6 @@
 package git.dragomordor.cobblemizer.fabric.item.custom;
 
+import com.cobblemon.mod.common.Cobblemon;
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity;
 import com.cobblemon.mod.common.pokemon.Pokemon;
 import git.dragomordor.cobblemizer.fabric.config.CobblemizerConfig;
@@ -22,24 +23,24 @@ public class FriendshipAddItem extends PokemonUseItem{
     @Override
     public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
         CobblemizerConfig config = CobblemizerConfig.Builder.load();
-        int maxFriendship = 255; // Maximum friendship value
+        int maxFriendship = Cobblemon.config.getMaxPokemonFriendship();
         int currentFriendship = pokemon.getFriendship(); // Current friendship value
         // Get the increaseAmount from the config based on the provided tier
         int increaseAmount = getIncreaseAmountForTier(config, tier);
-        // Modify the PokÃƒÆ’Ã‚Â©mon's friendship by the obtained increaseAmount
+        // Modify the Pok\u00e9mon's friendship by the obtained increaseAmount
         int newFriendship = Math.min(currentFriendship + increaseAmount, maxFriendship);
         int actualIncrease = newFriendship - currentFriendship;
         boolean increasedFriendship = pokemon.incrementFriendship(actualIncrease, false);
 
         if (!increasedFriendship || actualIncrease==0) { // fail if friendship is at max already
             // If friendship is already at max, return fail
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s friendship is already at max"));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s friendship is already at max"));
             return ActionResult.FAIL;
         }
 
-        player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s friendship increased by " + actualIncrease));
+        player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s friendship increased by " + actualIncrease));
         if (newFriendship == maxFriendship) {
-            player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append("'s friendship is now at max"));
+            player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append("'s friendship is now at max"));
         }
 
         itemStack.decrement(1); // remove item after use
@@ -57,4 +58,3 @@ public class FriendshipAddItem extends PokemonUseItem{
         return 0; // Default value if tierName not found in config
     }
 }
-

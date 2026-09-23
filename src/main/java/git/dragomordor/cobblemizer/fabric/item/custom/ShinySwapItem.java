@@ -15,16 +15,15 @@ public class ShinySwapItem extends PokemonUseItem{
 
     @Override
     public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-        boolean isShiny = pokemon.getShiny(); // Determines if PokÃƒÆ’Ã‚Â©mon is shiny
+        boolean isShiny = pokemon.getShiny(); // Determines if Pok\u00e9mon is shiny
 
         // Toggle shiny status
         pokemon.setShiny(!isShiny);
 
         String shinyMessage = isShiny ? "no longer shiny" : "now shiny";
-        player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append(" is " + shinyMessage));
+        player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append(" is " + shinyMessage));
         itemStack.decrement(1); // remove item after use
 
         return ActionResult.SUCCESS;
     }
 }
-

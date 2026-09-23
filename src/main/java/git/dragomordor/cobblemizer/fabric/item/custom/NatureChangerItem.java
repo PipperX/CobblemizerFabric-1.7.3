@@ -9,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import com.cobblemon.mod.common.util.MiscUtilsKt.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,15 +56,14 @@ public class NatureChangerItem extends  PokemonUseItem{
 
        // same nature is failed
        if (currentNature==nature) {
-           player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append(" is already " + natureDisplayNames.get(nature.getDisplayName())));
+           player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append(" is already " + natureDisplayNames.get(nature.getDisplayName())));
            return ActionResult.FAIL;
        }
 
        // change nature
         pokemon.setNature(nature);
-        player.sendMessage(Text.literal("").append(pokemon.getDisplayName()).append(" is now " + natureDisplayNames.get(nature.getDisplayName())));
+        player.sendMessage(Text.literal("").append(pokemon.getDisplayName(false)).append(" is now " + natureDisplayNames.get(nature.getDisplayName())));
         itemStack.decrement(1); // remove item after use
         return ActionResult.SUCCESS;
     }
 }
-

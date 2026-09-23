@@ -19,7 +19,7 @@ public class IVMaxerItem extends PokemonUseItem {
 
     @Override
     public ActionResult processInteraction(ItemStack itemStack, PlayerEntity player, PokemonEntity target, Pokemon pokemon) {
-        IVs ivs = pokemon.getIvs(); // Access the IVs of the PokÃƒÆ’Ã‚Â©mon
+        IVs ivs = pokemon.getIvs(); // Access the IVs of the Pok\u00e9mon
         // max stats
         int IVsMaxed = 0;
         Stat[] stats = new Stat[]{
@@ -57,4 +57,3 @@ public class IVMaxerItem extends PokemonUseItem {
         return ActionResult.SUCCESS;
     }
 }
-
