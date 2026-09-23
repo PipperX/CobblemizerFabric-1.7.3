@@ -1,6 +1,6 @@
 # Cobblemizer: Cobblemon Customizer Mod (Fabric)
 
-Cobblemizer, formerly known as Cobblemaxer, is a Cobblemon 1.4.1 side mod designed to enhance the gameplay experience by offering items that allow players to manipulate various stats and aesthetic characteristics of Pokémon within the game.
+Cobblemizer, formerly known as Cobblemaxer, is a Cobblemon 1.7.3 side mod designed to enhance the gameplay experience by offering items that allow players to manipulate various stats and aesthetic characteristics of Pokémon within the game.
 
 ## Features
 - **Gender Swapper Item:** Allows swapping the gender of a Pokémon.
@@ -32,7 +32,7 @@ If you encounter any issues or have suggestions for improvement, feel free to cr
 
 ## Credits
 
-Cobblemizer Mod was developed by Dragomordor
+Cobblemizer Mod was developed by Dragomordor ported to 1.7.3 by PipperX
 
 ## License
 
